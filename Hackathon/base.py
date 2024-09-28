@@ -1,33 +1,34 @@
-from cs50 import SQL
-from flask import Flask, render_template, request, session, redirect, get_json
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+import sqlite3
 import uuid
 
-app = Flask(__name__)
+app = FastAPI()
 
-def generate_user_id():
-    return str(uuid.uuid4()) #generate the user id for the user logging in
-
-db.execute("CREATE") #don't need the form db in table 2, can get it from when the user logs in 
+class User(BaseModel):
+    name: str
+    position: str
+    review: str = None
 
 def connect_db():
     conn = sqlite3.connect('users.db')
     return conn
 
-@app.route('/add_user', method = ['POST'])
-def add_user():
+@app.post("/add_user")
+def add_user(user: User):
     try:
-        review-send = request.get_json()
-        name = review-send['name']
-        position = data['position']
-
+        # Insert data into the database
         conn = connect_db()
-        curson = conn.cursor()
-        cursor.execute("INSERT INTO users (name, position) VALUES (?, ?)", (name, position))
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO users (name, position, review) VALUES (?, ?, ?)", (user.name, user.position, user.review))
         conn.commit()
         conn.close()
 
+        return {"message": "User added successfully"}
+
     except Exception as e:
-        return jsonify({'error': str(e)}), 400
+        raise HTTPException(status_code=400, detail=str(e))
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    import uvicorn
+    uvicorn.run(app, host="127.0.0.1", port=8000)
