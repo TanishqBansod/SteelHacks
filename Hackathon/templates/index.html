@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutor AI</title>
+  </head>
+  <body>
+    <h1>Generative AI Tutor</h1>
+
+    <!-- Input form -->
+    <form action="/submit" method="POST">
+      <label for="user_input">Ask the AI a question:</label>
+      <br />
+      <input
+        type="text"
+        id="user_input"
+        name="user_input"
+        placeholder="Enter your question"
+        required
+      />
+      <br /><br />
+      <button type="submit">Submit</button>
+    </form>
+
+    <!-- Display API response -->
+    {% if result %}
+    <h2>AI Response:</h2>
+    <p>{{ result }}</p>
+    {% endif %}
+  </body>
+</html>
