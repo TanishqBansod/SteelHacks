@@ -28,3 +28,4 @@ Building this project taught me invaluable lessons in technical skills and the *
 
 Looking ahead, we plan to enhance the platform by incorporating user feedback for further improvements, adding new features such as user analytics and personalized insights. Our goal is to expand its capabilities to support even more users and make the review process as efficient and beneficial as possible. We envision HReview becoming an indispensable tool for teams striving to harness the power of feedback.
 
+Youtube Link: https://youtu.be/ve3ohfTtvYM
